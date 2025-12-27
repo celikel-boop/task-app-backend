@@ -22,7 +22,7 @@ app.add_middleware(
     allow_headers=["*"],  # Content-Type vs
 )
 
-Base.metadata.create_all(bind=engine)
+//Base.metadata.create_all(bind=engine)
 
 # 🔹 DB dependency
 def get_db():
@@ -90,3 +90,6 @@ def delete_task(task_id: int, db: Session = Depends(get_db)):
     db.commit()
 
     return {"ok": True}
+@app.get("/")
+def health():
+    return {"status": "ok"}
